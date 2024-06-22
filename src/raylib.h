@@ -123,18 +123,14 @@
 
 // Allow custom memory allocators
 // NOTE: Require recompiling raylib sources
-#ifndef RL_MALLOC
-    #define RL_MALLOC(sz)       malloc(sz)
-#endif
-#ifndef RL_CALLOC
-    #define RL_CALLOC(n,sz)     calloc(n,sz)
-#endif
-#ifndef RL_REALLOC
-    #define RL_REALLOC(ptr,sz)  realloc(ptr,sz)
-#endif
-#ifndef RL_FREE
-    #define RL_FREE(ptr)        free(ptr)
-#endif
+void* raylib_malloc(size_t size);
+void* raylib_calloc(size_t num, size_t size);
+void* raylib_realloc(void* ptr, size_t size);
+void raylib_free(void* ptr);
+#define RL_MALLOC(sz)       raylib_malloc(sz)
+#define RL_CALLOC(n,sz)     raylib_calloc(n,sz)
+#define RL_REALLOC(ptr,sz)  raylib_realloc(ptr,sz)
+#define RL_FREE(ptr)        raylib_free(ptr)
 
 // NOTE: MSVC C++ compiler does not support compound literals (C99 feature)
 // Plain structures in C++ (without constructors) can be initialized with { }
