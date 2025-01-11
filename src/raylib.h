@@ -129,6 +129,7 @@
 
 // Allow custom memory allocators
 // NOTE: Require recompiling raylib sources
+#include <stddef.h>
 void* raylib_malloc(size_t size);
 void* raylib_calloc(size_t num, size_t size);
 void* raylib_realloc(void* ptr, size_t size);
